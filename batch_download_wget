@@ -1,0 +1,69 @@
+＃＃auto downloader with wget and rename
+cd "/Users/jasonlin/Documents/2015 NTU/2015資料科學的數理統計基礎/2005 Handbook of Computational Molecular Biology"
+# { number_start..number_end}
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.pt1
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.ch2
+
+
+## download the file and save as chapter2.pdf
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.ch2 -O chapter2.pdf
+wget -O chapter2.pdf http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.ch2 
+
+
+## download the file with the url from ch2 to ch38
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.ch{2..38}  
+
+##rename副檔名
+mv *.ch *.pdf
+
+
+http://www.crcnetbase.com/doi/pdf/10.1201/9781420036275.ch38
+
+
+http://www.crcnetbase.com/doi/pdf/10.1201/b17487-1
+http://www.crcnetbase.com/doi/pdf/10.1201/b17487-2
+wget http://www.crcnetbase.com/doi/pdf/10.1201/b17487-{1..25}
+http://www.crcnetbase.com/doi/pdf/10.1201/9781420063684.fmatt
+http://www.crcnetbase.com/doi/pdf/10.1201/9781420063684.ch1
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781420063684.ch{1..9}& wget -O content.pdf http://www.crcnetbase.com/doi/pdf/10.1201/9781420063684.fmatt
+
+
+##Data Science in R##
+
+cd "/Users/jasonlin/Documents/2015 Programming/2015 program book/R program/Data Science in R"
+http://www.crcnetbase.com/doi/pdf/10.1201/b18325-1
+http://www.crcnetbase.com/doi/pdf/10.1201/b18325-16
+wget http://www.crcnetbase.com/doi/pdf/10.1201/b18325-{1..16}
+
+##Optimal Experimental Design with R##
+
+cd "/Users/jasonlin/Documents/2015 Programming/2015 program book/R program/Optimal Experimental Design with R"
+http://www.crcnetbase.com/doi/pdf/10.1201/b10934-1
+http://www.crcnetbase.com/doi/pdf/10.1201/b10934-16
+wget http://www.crcnetbase.com/doi/pdf/10.1201/b10934-{1..16}
+
+##Clinical Trial Data Analysis Using R##
+
+cd "/Users/jasonlin/Documents/2015 Programming/2015 program book/R program/Clinical Trial Data Analysis Using R"
+http://www.crcnetbase.com/doi/pdf/10.1201/b10478-1
+http://www.crcnetbase.com/doi/pdf/10.1201/b10478-14
+wget http://www.crcnetbase.com/doi/pdf/10.1201/b10478-{1..14}
+
+##Cancer Systems Biolog##
+
+cd "/Users/jasonlin/Documents/2015 Programming/2015 program book/R program/Cancer Systems Biology CRC press 2010 "
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-f
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-s1
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-c1
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-c2
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-c3
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-c15
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-s2
+http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-s3
+wget http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-c{1..20} & wget http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-f & wget http://www.crcnetbase.com/doi/pdf/10.1201/9781439811863-s{1..3}
+
+## Systems Biology and Bioinformatics ##
+cd "/Users/jasonlin/Documents/2015 Programming/2015 program book/R program/Systems Biology and Bioinformatics CRC press"
+curl http://www.crcnetbase.com/doi/pdf/10.1201/b15824-15
+wget http://www.crcnetbase.com/doi/pdf/10.1201/b15824-{1..15}
+http://www.crcnetbase.com/doi/pdf/10.1201/b15824-15
