@@ -43,23 +43,23 @@ answer: 3
 #Question 2:How many genes and transcript variants?
 $ cut -f1,2 apple.genes | sort > cut_gene
 $ cut -f1 cut_gene | uniq -d
-5453,6
+5453,6(x)
 
 MDP0000025650
 MDP0000301110
 MDP0000575784
 
 #Question 3: How many genes havee a single  splice variant?
-2
+2(x)
 
 #Question 4 : How may genes have 2 or more splice variants?
-1
+1(x)
 
 #Question 5: How many genes are there on the '+' and '-' strands?
 sort -k 4 -k 1 strandgene | grep "+" | wc -l
 sort -k 4 -k 1 strandgene | grep "-" | wc -l
 
-2664,2792
+2664,2792 (x)
 
 #Question 6: How many genes are there on each chromosome?
 $sort -k 4 -k 1 strandgene | grep "chr1" | wc -l
@@ -90,13 +90,13 @@ $ cut -f1 apple.conditionC |sort |uniq-u |wc -l
 $ cut -f1 apple.conditionA|sort >conditionA
 $ cut -f1 apple.conditionB|sort >conditionB
 $comm conditionA conditionB|cut -f3 |uniq -u |wc -l
->4291
+>4291 (x)
 
 #Question 9: How many genes are specific to condition A and condition B?
 $comm conditionA conditionB|cut -f1 |uniq -u |wc -l
->1429
+>1429 (x)
 $comm conditionA conditionB|cut -f2 |uniq -u |wc -l
->3084
+>3084 (x)
 
 #Question 10 : How many genes are in common to all three condtions?
 $comm -1 -2 conditionA conditionB |sort > contionAB
