@@ -44,7 +44,8 @@ answer: 3
 $ cut -f1,2 apple.genes | sort > cut_gene
 $ cut -f1 cut_gene | uniq -d
 5453,6(x)
-5453,3
+5453,3(x)
+5453,5456
 
 MDP0000025650
 MDP0000301110
@@ -52,11 +53,13 @@ MDP0000575784
 
 #Question 3: How many genes havee a single  splice variant?
 2(x)
-1
+1(x)
+5450
 
 #Question 4 : How may genes have 2 or more splice variants?
 1(x)
-2
+2(x)
+3
 #Question 5: How many genes are there on the '+' and '-' strands?
 sort -k 4 -k 1 strandgene | grep "+" | wc -l
 sort -k 4 -k 1 strandgene | grep "-" | wc -l
