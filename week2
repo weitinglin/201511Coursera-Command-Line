@@ -1,0 +1,54 @@
+#20151114
+#Coursera
+#weitinglin
+#week2 examination
+
+#Dowmload the File
+$ wget https://d396qusza40orc.cloudfront.net/gencommand/gencommand_proj2_data.tar.gz
+$ ls
+>gencommand_proj2_data.tar.gz
+
+#Zip the File
+$ tar zxvf gencommand_proj2_data.tar.gz
+>athal_wu_0_A.bam.bai
+>athal_wu_0_A.bam
+>athal_wu_0_A_annot.gtf  
+	 	
+
+#Question 1:How many alignments does the set contain?
+#View the basic status
+$ samtools flagstat athal_wu_0_A.bam
+>221372 + 0 in total (QC-passed reads + QC-failed reads)
+>20419 + 0 duplicates
+>218469 + 0 mapped (98.69%:-nan%)
+>155851 + 0 paired in sequencing
+>77895 + 0 read1
+>77956 + 0 read2
+>142663 + 0 properly paired (91.54%:-nan%)
+>150045 + 0 with itself and mate mapped
+>2903 + 0 singletons (1.86%:-nan%)
+4938 + 0 with mate mapped to a different chr
+2120 + 0 with mate mapped to a different chr (mapQ>=5)
+Answer: 911809
+
+#Question 2:How many alignments show the read’s mate unmapped?
+Answer: 221372-218469=2930
+
+#Question 3:How many alignments contain a deletion (D)?
+$ samtools view
+$ samtools view --help
+$ samtools view -h athal_wu_0_A.bam | head -15
+@HD     VN:1.0  GO:none SO:coordinate
+@SQ     SN:Chr1 LN:29923332     AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:Chr2 LN:19386101     AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:Chr3 LN:23042017     AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:Chr4 LN:18307997     AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:Chr5 LN:26567293     AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:chloroplast  LN:154478       AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@SQ     SN:mitochondria LN:366924       AS:wu_0.v7.fas  SP:wu_0.v7.fas
+@RG     ID:H100223_GAII05_0002  PL:SLX  LB:wu_PII       PI:400  DS:wu_0_Genome  SM:wu_0
+@RG     ID:Wii_PER01    PL:SLX  LB:wu_phaseI    PI:400  DS:wu_0_Genome  SM:wu_0
+@RG     ID:Wii_PER02    PL:SLX  LB:wu_phaseI    PI:400  DS:wu_0_Genome  SM:wu_0
+@RG     ID:Wii_SR03     PL:SLX  LB:wu_phaseI    PI:400  DS:wu_0_Genome  SM:wu_0
+@PG     ID:stampy       VN:1.0.3_(r627) CL:-g /lustre/scratch103/sanger/xcg/tmp/tmp.zYfXz26246 -h /lustre/scratch103/sanger/xcg/tmp/tmp.zYfXz26246 --readgroup=ID:Wii_PER01,LB:wu_phaseI,SM:wu_0,PI:400,PL:SLX,DS:wu_0_Genome --bwaoptions=-q10 /lustre/scratch103/sanger/xcg/wu_0.v7.fas -o /lustre/scratch103/sanger/xcg/wu_0/A/aln_A1.sp0.sam -M /lustre/scratch103/sanger/xcg/wu_0/read_1_1.sp0.fq.gz /lustre/scratch103/sanger/xcg/wu_0/read_1_2.sp0.fq.gz
+@CO     TM:Fri, 17 Sep 2010 12:20:13 BST        WD:/lustre/scratch103/sanger/xcg/wu_0/self      HN:bc-16-1-07.internal.sanger.ac.uk   UN:xcg
