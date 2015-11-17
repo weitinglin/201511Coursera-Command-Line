@@ -58,12 +58,13 @@ $ samtools view -h athal_wu_0_A.bam | head -15
 @CO     TM:Fri, 17 Sep 2010 12:20:13 BST        WD:/lustre/scratch103/sanger/xcg/wu_0/self      HN:bc-16-1-07.internal.sanger.ac.uk   UN:xcg
 answer =2451
 samtools view athal_wu_0_A.bam | cut -f 6 | grep "D" | wc -l
-
+明明算出來是2451, 誰打成68525 !!!!
 Question 4
 How many alignments show the read’s mate mapped to the same chromosome?
 echo 150045-4938 = 145107
 XXXXXXXX
 147925
+?150913
 
 Question 5
 How many alignments are spliced?
@@ -124,13 +125,16 @@ What is the read identifier (name) for the first alignment?
 answer = WII-PERO1
 XXXX
 RG:Z:H100223_GAII05_0002
+xxxxxxxxxxxxxx
+GAii05_00
+
 
 Question 15
 What is the start position of this read’s mate on the genome? Give this as ‘chrom:pos’ if the read was mapped, or ‘*” if unmapped.
 answer = 11699950
 XXXX
 chrom:11700332
-
+xxxxxx
 
 Questions 16 - 20: 
 Using BEDtools, examine how many of the alignments at point 2 overlap exons at the locus of interest. 
@@ -157,8 +161,9 @@ answer =3103
 Question 19
 Conversely, how many exons have reads mapped to them?
 bedtools intersect -wo -a athal_wu_0_A_annot.gtf -b athal_wu_0_A.bam | cut -f4 | sort -u | wc -l
-answer =1818
-
+answer =1818?
+xxxxxxxxxxxxxxxxxxxxxxxx
+answer = 21
 Question 20
 If you were to convert the transcript annotations in the file “athal_wu_0_A_annot.gtf” into BED format, how many BED records would be generated?
 answer = 4
