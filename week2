@@ -29,10 +29,10 @@ $ samtools flagstat athal_wu_0_A.bam
 >2903 + 0 singletons (1.86%:-nan%)
 4938 + 0 with mate mapped to a different chr
 2120 + 0 with mate mapped to a different chr (mapQ>=5)
-Answer: 911809
+Answer: 911809 or 221372
 
 #Question 2:How many alignments show the read’s mate unmapped?
-Answer: 221372-218469=2930
+Answer: 221372-218469=2930   or 221372-150045=71327 or 155851-150045=5805
 
 #Question 3:How many alignments contain a deletion (D)?
 $ samtools view
@@ -52,3 +52,84 @@ $ samtools view -h athal_wu_0_A.bam | head -15
 @RG     ID:Wii_SR03     PL:SLX  LB:wu_phaseI    PI:400  DS:wu_0_Genome  SM:wu_0
 @PG     ID:stampy       VN:1.0.3_(r627) CL:-g /lustre/scratch103/sanger/xcg/tmp/tmp.zYfXz26246 -h /lustre/scratch103/sanger/xcg/tmp/tmp.zYfXz26246 --readgroup=ID:Wii_PER01,LB:wu_phaseI,SM:wu_0,PI:400,PL:SLX,DS:wu_0_Genome --bwaoptions=-q10 /lustre/scratch103/sanger/xcg/wu_0.v7.fas -o /lustre/scratch103/sanger/xcg/wu_0/A/aln_A1.sp0.sam -M /lustre/scratch103/sanger/xcg/wu_0/read_1_1.sp0.fq.gz /lustre/scratch103/sanger/xcg/wu_0/read_1_2.sp0.fq.gz
 @CO     TM:Fri, 17 Sep 2010 12:20:13 BST        WD:/lustre/scratch103/sanger/xcg/wu_0/self      HN:bc-16-1-07.internal.sanger.ac.uk   UN:xcg
+Question 4
+How many alignments show the read’s mate mapped to the same chromosome?
+echo 150045-4938 = 145107
+
+Questions 6 - 10: 
+Extract only the alignments in the range “Chr3:11,777,000-11,794,000”, corresponding to a locus of interest. For this alignment set: 
+samtools view file.bam "Chr3:11777000-1179400" out_put_file
+
+Question 6
+How many alignments does the set contain?
+answer = 7081
+
+Question 7
+How many alignments show the read’s mate unmapped?
+answer =483
+# use the field information of RNEXT or QNEXT
+Question 8
+How many alignments contain a deletion (D)?
+answer = 31
+# use the CIGAR infromation
+# samtools view file_bam| more | cut -f6 | grep "N" | wc -l
+
+Question 9
+How many alignments show the read’s mate mapped to the same chromosome?
+answer = 4670
+# use filed information of RNEXT
+
+Question 10
+How many alignments are spliced?
+anser = 0
+# use the CIGAR information
+
+Question 11
+How many sequences are in the genome file?
+answer = 5
+# use the samtools -H file.bam to see the header information
+
+Question 12
+What is the length of the first sequence in the genome file?
+answer = 29923332
+
+Question 13
+What alignment tool was used?
+anser = stampy
+
+Question 14
+What is the read identifier (name) for the first alignment?
+answer = WII-PERO1
+
+Question 15
+What is the start position of this read’s mate on the genome? Give this as ‘chrom:pos’ if the read was mapped, or ‘*” if unmapped.
+answer = 11699950
+Questions 16 - 20: 
+Using BEDtools, examine how many of the alignments at point 2 overlap exons at the locus of interest. 
+Use the BEDtools ‘-wo’ option to only report non-zero overlaps. The list of exons is given in the included 
+‘athal_wu_0_A_annot.gtf’ GTF file. 
+
+# bedtools intersect -wo -a athal_wu_0_A_annot.gtf -b athal_wu_0_A.bam | wc -l
+
+Question 16
+How many overlaps (each overlap is reported on one line) are reported?
+anser = 3101
+
+Question 17
+How many of these are 10 bases or longer?
+# bedtools intersect -wo -a athal_wu_0_A_annot.gtf -b athal_wu_0_A.bam |cut -f 14 | sort -n -r | grep -i -E '[1-9][1-9]' | wc -l
+answer = 1442
+
+Question 18
+How many alignments overlap the annotations?
+
+
+Question 19
+Conversely, how many exons have reads mapped to them?
+bedtools intersect -wo -a athal_wu_0_A_annot.gtf -b athal_wu_0_A.bam | cut -f4 | sort -u | wc -l
+answer =1818
+
+Question 20
+If you were to convert the transcript annotations in the file “athal_wu_0_A_annot.gtf” into BED format, how many BED records would be generated?
+answer = 4
+cut -f 9 athal_wu_0_A.gtf | sort -u | wc -l
