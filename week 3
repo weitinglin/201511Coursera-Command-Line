@@ -11,17 +11,29 @@ Apply to questions 1 - 5:
 Generate a bowtie2 index of the wu_0_A genome using bowtie2-build, with the prefix 'wu_0'. 
 $ wget https://d396qusza40orc.cloudfront.net/gencommand/gencommand_proj3_data.tar.gz
 $ tar zxvf  gencommand_proj3_data.tar.gz
-
 $bowtie2-build -f wu_0.v7.fas wu_O
+$bowtie2 --local  -x wu_O -q wu_0_A_wgs.fastq -S wu_0_A_wgs_local.sam
+
+
 Question 1:How many sequences were in the genome?
 $ cat wu_0.v7.fas |grep ">Chr" |wc -l
 answer=5
-
+xxx
+$samtools view -H wu_0_A_wgs.bam
+@SQ     SN:Chr1 LN:29923332
+@SQ     SN:Chr2 LN:19386101
+@SQ     SN:Chr3 LN:23042017
+@SQ     SN:Chr4 LN:18307997
+@SQ     SN:Chr5 LN:26567293
+@SQ     SN:chloroplast  LN:154478
+@SQ     SN:mitochondria LN:366924
+anser=7
 Question 2 : What was the name of the third sequence in the genome file? Give the name only, without the “>” sign.
 Chr3
 Question 3: What was the name of the fifth sequence in the genome file? Give the name only, without the “>” sign.
 Chr5
-
+xxxxxx
+answer=mitochondria
 Question 4:How many index files did the operation create?
 6
 
@@ -64,7 +76,10 @@ You can find this in the bowtie2 summary; note that by default bowtie2 only repo
 Question 10:How many alignments contained insertions and/or deletions, in each scenario? Use the format above.
 $ cat  wu_0_A_wgs.sam| grep -v  "NM:i:0"|head
 1 1
-ls
+xxxxxx
+$ bowtie2 --local  -x wu_O -q wu_0_A_wgs.fastq -S wu_0_A_wgs_local.sam
+$cat  wu_0_A_wgs.sam| cut -f 6|grep [ID]|wc -l
+2779   2610
 For the following set of questions (11 - 20), use the set of full-length alignments calculated under scenario 1 only. 
 Convert this SAM file to BAM, then sort the resulting BAM file. 
 $samtools view -bT wu_0.v7.fas wu_0_A_wgs.sam > wu_0_A_wgs.bam
@@ -72,23 +87,32 @@ $samtools view -bT wu_0.v7.fas wu_0_A_wgs.sam > wu_0_A_wgs.bam
 Question 11:How many entries were reported for Chr3?
 $samtools view wu_0_A_wg1.bam | cut -f3 | grep "Chr3"|wc -l
 61477
-
+xxxxxx
+$ more wu_0_A_wg1.mpileup|grep "Chr3" | wc -l
+360015
 Question 12:How many entries have ‘A’ as the corresponding genome letter?
 $ more wu_0_A_wg1.mpileup| cut -f 3,5 | grep "A." | wc -l
 1154284
+xxxxx
+$more wu_0_A_wg1.mpileup|cut -f 3|grep "A" | wc -l
+1151146
 
 Question 13 How many entries have exactly 20 supporting reads (read depth)?
 $more wu_0_A_wg1.mpileup| cut -f 4 | grep '[1-9][0-9]' |wc -l
 122798
-
+xxxxxxx
+$more wu_0_A_wg1.mpileup|cut -f 4|grep "20" | wc -l
+1667
 Question 14:How many entries represent indels?
 $more wu_0_A_wg1.mpileup| cut -f 5 | grep '*' |wc -l
 323
-
-
+xxxxxxxxxx
+$ more wu_0_A_wg1.mpileup|cut -f 5|grep [\+\-] | wc -l
+2312
 Question 15
 How many entries are reported for position 175672 on Chr1?
 1
+$
 Question 16
 How many variants are called on Chr3?
 $more wu_0_A_wg1.mpileup |grep "Chr3"| cut -f5|grep -v "-" | grep -v "+"|grep '[ATCGactg]'| grep -v "\^"|wc -l
