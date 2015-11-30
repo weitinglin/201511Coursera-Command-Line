@@ -33,7 +33,7 @@ Day8
             
 @HD	VN:1.0	SO:coordinate
 @SQ	SN:4	LN:500000
-@PG	ID:TopHat	VN:2.0.14	CL:/usr/local/bin/tophat -p 4 -o Day8/ -G athal_genes.gtf --transcriptome-index=athal.tr athal Day8.fastq
+@PG	ID:TopHat	VN:2.0.14	CL:/usr/local/bin/ㄇ
 
 Day16
 Input     :     57985
@@ -47,15 +47,28 @@ Input     :     57985
 Qestion 1 How many alignments were produced for the ‘Day8’ and ‘Day16’ RNA-seq data sets, respectively?
 samtools view accepted_hits.bam |more|wc -l
 64386 57977
+XXXXXXXXXXX
+>直接去看flagstat的值，減掉secondary?
+63476 57977-34
 Question 2:How many reads were mapped in each set?
 63476 57943
+xxxxxxxxxxxx
+63576 57985
 Question 3:How many reads were uniquely aligned in each case?
 63476 57943
+xxxxxxxxxxxxx
+63466 57909
 Question 4:How many spliced alignments were reported for each set?
 10 34
+xxxxxxxxxxxxx
+＄samtools view accepted_hits.bam |cut -f 1,6 | grep "N"|wc -l
+8760 10849
 Question 5:How many reads were left unmapped from each set?
 $samtools view unmapped.bam | wc -l
 97 42
+xxxxx
+107 76
+(secondary+ummaped)
 
 
 Assemble the aligned RNA-seq reads into genes and transcripts using cufflinks. Use the labels ‘Day8’ and ‘Day16’,
@@ -126,6 +139,8 @@ $cut -f 1 genes.fpkm_tracking | grep "day"| wc -l
 >2 
  172-6 77-14
  answer=166 63
+ 
+ 
  Question 9 : How many single-exon transcripts were in the two sets?
 $cat transcripts.gtf | grep -v "transcipt" | cut -f9 | grep -v "exon_number \"[2-9]\""|grep -v "exon_number \"[1-9][1-9]\""|grep "exon_number \"1\""|wc -l
 $cat transcripts.gtf | grep -v "transcipt" | cut -f9 | grep -v "exon_number \"[2-9]\""|grep -v "exon_number \"[1-9][1-9]\""|grep "exon_number \"1\""|wc -l
@@ -135,7 +150,9 @@ Day16:$ cat transcripts.gtf |grep "exon_number \"2\""|wc -l
 Day8:$ cat transcripts.gtf |grep "exon_number \"2\""|wc -l
 64
 Answer: 178-64 93-64
-
+xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ grep  "exon" transcripts.gtf|cut -f 9|cut -d ';' -f 2|cut -d '"' -f2|sort|cut -d '.' -f 2 |sort|uniq -d|wc -l
+61 58
 Question 10: How many multi-exon transcripts were reported for each set?
 64 72
 
@@ -167,11 +184,14 @@ Day16
 
 Question 11:How many cufflinks transcripts fully reconstruct annotation transcripts in each sample?
 19 40
+xxxxxxx
+144 59
 #not sure the exactly Transfrag class codes should bel
 
 Question 12:How many splice variants does the gene AT4G20240 have in the two samples?
 1 0
-
+xxxxxxxx
+2 0
 Question 13:How many cufflinks transcripts are partial reconstructions of reference transcripts (‘contained’)?
 125 19
 
@@ -279,4 +299,4 @@ XLOC_000126	XLOC_000126	AT4G20240	4:431492-434212	q1	q2	OK	0	6466.49	inf	-nan	5e
 4
 Question 20:How many transcripts were differentially expressed between the two samples?
 use isofrom_exp.diff ?
-2
+2＋4
